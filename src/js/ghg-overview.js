@@ -29,10 +29,10 @@ define([
             selected_aggregation: "AVG",
 
             // Default URLs
-            url_wds: 'http://faostat3.fao.org/wds',
-            baseurl_data: '/rest/table/json',
-            baseurl_countries: '/rest/procedures/countries',
-            baseurl_years: '/rest/procedures/years',
+            url_wds: 'http://faostat3.fao.org/wds/rest',
+            baseurl_data: '/table/json',
+            baseurl_countries: '/procedures/countries',
+            baseurl_years: '/procedures/years',
 
             // Default Values of the comboboxes
             selected_areacodes: [],
