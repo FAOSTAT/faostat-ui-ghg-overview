@@ -29,10 +29,10 @@ define([
             selected_aggregation: "AVG",
 
             // Default URLs
-            baseurl: 'http://faostat3.fao.org',
-            baseurl_data: '/wds/rest/table/json',
-            baseurl_countries: '/wds/rest/procedures/countries',
-            baseurl_years: '/wds/rest/procedures/years',
+            url_wds: 'http://faostat3.fao.org/wds',
+            baseurl_data: '/rest/table/json',
+            baseurl_countries: '/rest/procedures/countries',
+            baseurl_years: '/rest/procedures/years',
 
             // Default Values of the comboboxes
             selected_areacodes: [],
@@ -134,7 +134,7 @@ define([
 
         var self = this,
             defaultCodes = this.CONFIG.selected_areacodes,
-            url = this.CONFIG.baseurl + this.CONFIG.baseurl_countries + "/" + this.CONFIG.datasource + "/" + this.CONFIG.domaincode + "/" + this.CONFIG.lang;
+            url = this.CONFIG.url_wds + this.CONFIG.baseurl_countries + "/" + this.CONFIG.datasource + "/" + this.CONFIG.domaincode + "/" + this.CONFIG.lang;
 
         $.ajax({
             url: url,
@@ -267,7 +267,7 @@ define([
         data.json = JSON.stringify(query_total.sql);
         $.ajax({
             type: 'POST',
-            url: this.CONFIG.baseurl + this.CONFIG.baseurl_data,
+            url: this.CONFIG.url_wds + this.CONFIG.baseurl_data,
             data: data,
             success: function (response) {
 
@@ -473,7 +473,7 @@ define([
         var self = this;
         $.ajax({
             type: 'POST',
-            url: this.CONFIG.baseurl + this.CONFIG.baseurl_data,
+            url: this.CONFIG.url_wds + this.CONFIG.baseurl_data,
             data: data,
             success: function (response) {
                 $("#" + id + "_element").html(response[0][0]);
@@ -497,7 +497,7 @@ define([
         var self = this;
         $.ajax({
             type: 'POST',
-            url: this.CONFIG.baseurl + this.CONFIG.baseurl_data,
+            url: this.CONFIG.url_wds + this.CONFIG.baseurl_data,
             data: data,
             success: function (response) {
 
@@ -597,7 +597,7 @@ define([
         data.json = JSON.stringify(sql);
         $.ajax({
             type: 'POST',
-            url: this.CONFIG.baseurl + this.CONFIG.baseurl_data,
+            url: this.CONFIG.url_wds + this.CONFIG.baseurl_data,
             data: data,
             success: function (response) {
                 $('#' + config.placeholder).empty();
