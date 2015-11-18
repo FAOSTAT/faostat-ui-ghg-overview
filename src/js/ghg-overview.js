@@ -1,12 +1,12 @@
 define([
     'jquery',
     'handlebars',
-    'text!html/template.html',
-    'config/queries',
-    'i18n!nls/translate',
+    'text!faostat_ui_ghg_overview/html/template.html',
+    'faostat_ui_ghg_overview/config/queries',
+    'i18n!faostat_ui_ghg_overview/nls/translate',
     'wide-table',
     'f3-ghg-chart',
-    'config/highcharts-config',
+    'faostat_ui_ghg_overview/config/highcharts-config',
     'chosen'
 ], function ($, Handlebars, template, queries, i18n, Table, Chart, HighChartsConfig) {
 
