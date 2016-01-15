@@ -43,6 +43,8 @@ define([
                 series: series
             };
 
+            console.log($.extend(true, {}, highchartsConfig, chart));
+
             var c = new Highcharts.Chart($.extend(true, {}, highchartsConfig, chart));
 
         }
@@ -83,7 +85,6 @@ define([
                 vectors[ind].dates = [];
                 vectors[ind].mus = [];
                 vectors[ind].values = new Hashtable();
-
 
                 /** Create a vector for each indicator */
                 for (var i = 0; i < data.length; i++) {

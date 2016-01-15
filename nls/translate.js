@@ -38,7 +38,11 @@ define({
 
         'user_instructions': 'User Instructions',
         'export': 'Export',
-        'avg': 'Average'
+        'avg': 'Average',
+
+        charts: 'Charts',
+        tables: 'Tables'
+
     },
     'F' : true,
     'S' : true

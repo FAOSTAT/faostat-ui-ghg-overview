@@ -91,19 +91,33 @@ define([], function () {
                 itemHoverStyle: {
                     color: '#3ca7da'
                 }
-            }
-            ,
+            },
             plotOptions: {
-                pie: {
+/*                pie: {
                     borderWidth: 1,
                     startAngle: -45,
                     dataLabels: {
                         enabled: false,
                         softConnector: false
                     }
+                },*/
+
+                pie: {
+                    // what
+                    borderWidth: 1,
+                    startAngle: -45,
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function () {
+                            return Math.round(parseFloat(this.percentage).toFixed(1) * 100) / 100 + ' %';
+                        }
+                    },
+                    showInLegend: true
                 }
-            }
-            ,
+
+            },
             title: {
                 enabled: true,
                 text: null,
@@ -116,7 +130,10 @@ define([], function () {
             }
             ,
             tooltip: {
-                shadow: true
+                shadow: false,
+                crosshairs: true,
+                valueDecimals: 2,
+                pointFormat: '{point.y} ({series.name}) <br>{point.percentage:.1f}% '
             }
 
         },
@@ -267,12 +284,12 @@ define([], function () {
                 backgroundColor: 'rgba(255, 255, 255, 0.95)',
                 borderWidth: 1,
                 shadow: false,
-                shared : true,
+                shared: true,
                 crosshairs: true,
                 valueDecimals: 2,
                 valuePrefix: '',
                 valueSuffix: ''
-            },
+            }
         }
     }
 

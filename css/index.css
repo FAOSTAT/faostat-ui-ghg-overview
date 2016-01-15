@@ -38,6 +38,11 @@
 .hor-minimalist-b_row2 {
     background-color: #F4F4F4;
 }
+
 .hor-minimalist-b_row-bold {
     font-weight:bold
+}
+
+.tabpanel .nav-tabs > li > a {
+    font-size: 13px;
 }

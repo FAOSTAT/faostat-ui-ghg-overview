@@ -1,3 +1,4 @@
+/*global define, console*/
 define([
     'jquery',
     'handlebars',
@@ -7,7 +8,8 @@ define([
     'wide-table',
     'f3-ghg-chart',
     'faostat_ui_ghg_overview/config/highcharts-config',
-    'chosen'
+    'chosen',
+    'bootstrap'
 ], function ($, Handlebars, template, queries, i18n, Table, Chart, HighChartsConfig) {
 
     'use strict';
@@ -69,14 +71,14 @@ define([
                 overview_panel: "#fs_overview_panel",
                 world_total: '#fs_world_total',
                 country_total_name: '#fs_country_total_name',
-                note: '#fs_overview_note',
+                note: '#fs_overview_note'
 
             }
         };
 
         return this;
 
-    };
+    }
 
     GHG_OVERVIEW.prototype.init = function (config) {
 
@@ -164,11 +166,12 @@ define([
     GHG_OVERVIEW.prototype.populateDD = function (values, defaultCodes) {
 
         var options = [];
+
         for (var i = 0; i < values.length; i++) {
             if (defaultCodes.indexOf(values[i][0]) > -1) {
-                options.push('<option selected value="' + values[i][0] + '">' + values[i][1] + '</option>')
+                options.push('<option selected value="' + values[i][0] + '">' + values[i][1] + '</option>');
             } else {
-                options.push('<option value="' + values[i][0] + '">' + values[i][1] + '</option>')
+                options.push('<option value="' + values[i][0] + '">' + values[i][1] + '</option>');
             }
         }
         return options.join();
@@ -420,7 +423,7 @@ define([
 
         var values = this.$COUNTRY_LIST.find("option:selected");
         var labels = [];
-        if (typeof values == "object") {
+        if (typeof values === "object") {
             for (var i = 0; i < values.length; i++) {
                 labels.push(values[i].text);
             }
@@ -620,7 +623,7 @@ define([
             toyear: this.CONFIG.selected_to_year,
             domaincode: "'" + this.CONFIG.domaincode + "'",
             aggregation: this.CONFIG.selected_aggregation
-        }
+        };
 
     };
 
@@ -644,7 +647,7 @@ define([
         try {
             var temp = text;
             var index = temp.indexOf(stringToFind);
-            while (index != -1) {
+            while (index !== -1) {
                 temp = temp.replace(stringToFind, stringToReplace);
                 index = temp.indexOf(stringToFind);
             }
