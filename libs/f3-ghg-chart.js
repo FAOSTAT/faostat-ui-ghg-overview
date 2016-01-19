@@ -43,8 +43,6 @@ define([
                 series: series
             };
 
-            console.log($.extend(true, {}, highchartsConfig, chart));
-
             var c = new Highcharts.Chart($.extend(true, {}, highchartsConfig, chart));
 
         }
