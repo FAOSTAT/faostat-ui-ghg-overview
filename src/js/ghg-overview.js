@@ -540,8 +540,6 @@ define([
 
     GHG_OVERVIEW.prototype.createChart = function (id, sql, type, colors, exportObj) {
 
-        console.log(exportObj);
-
         $(id).show();
         var data = {};
         data.datasource = this.CONFIG.datasource;

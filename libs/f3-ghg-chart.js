@@ -70,9 +70,6 @@ define([
                 }
             };
 
-
-            console.log(exportObj);
-
             var c = new Highcharts.Chart($.extend(true, {}, highchartsConfig, chart));
 
         }

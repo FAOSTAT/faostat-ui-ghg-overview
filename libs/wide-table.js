@@ -23,9 +23,6 @@ define([
 
         function init(config, years, json, i18nLabels) {
 
-
-            console.log(years);
-
             CONFIG = $.extend(true, {}, CONFIG, config);
             if (CONFIG.prefix === null) {
                 CONFIG.prefix = CONFIG.placeholder;
