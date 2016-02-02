@@ -224,7 +224,7 @@ define([
             csv += '\r\n\n';
             csv += '"'+ i18n.description +': ' + sanitizeString(CONFIG.title) + '"\n';
             csv += '"'+ i18n.source +': ' + CONFIG.source + '"\n';
-            csv += '"'+ i18n.date +': ' + new Date() + '"\n';
+            csv += '"'+ i18n.date +': ' + (new Date()).toDateString() + '"\n';
 
 
             // Data URI
