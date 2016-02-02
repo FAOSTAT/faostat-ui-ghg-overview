@@ -1,6 +1,7 @@
 define([
     'jquery',
-    'jshashtable'
+    'jshashtable',
+    'FileSaver'
 ], function ($) {
 
     'use strict';
@@ -226,14 +227,19 @@ define([
 
             // Data URI
             //var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+            // TODO: check if it works in all browser. There should be an issue with Sfari 8.0
 
-            var a = document.createElement('a');
-            // a.href = 'data:text/csv;charset=utf-8,\n' + encodeURIComponent(csv);
-            a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
-            a.target = '_blank';
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
+            var blob = new Blob([csv], {type: "data:application/csv;charset=utf-8;"});
+
+            saveAs(blob, filename);
+
+            //var a = document.createElement('a');
+            //// a.href = 'data:text/csv;charset=utf-8,\n' + encodeURIComponent(csv);
+            //a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+            //a.target = '_blank';
+            //a.download = filename;
+            //document.body.appendChild(a);
+            //a.click();
 
             //------------------------------------------------------------
             // Helper Functions
