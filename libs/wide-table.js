@@ -39,7 +39,7 @@ define([
 
             CONFIG.export_id = CONFIG.export_id || CONFIG.prefix + '_export';
             $('#' + CONFIG.export_id).on('click', function() {
-                exportTableToCSV($('#' + CONFIG.prefix), CONFIG.title.toLocaleLowerCase() + ' data.csv', i18n);
+                exportTableToCSV($('#' + CONFIG.prefix), CONFIG.title.toLocaleLowerCase() + '.csv', i18n);
             });
 
         }
@@ -59,7 +59,7 @@ define([
             // Average
             s += "<th>" + i18n.avg + " " + years[0] + "-" + years[years.length - 1] + "</th>";
             years.forEach(function (y) {
-                s += "<th>" + y + "</th>"
+                s += "<th>" + y + "</th>";
             });
             s += "</tr>";
             s += "</thead>";
@@ -222,7 +222,7 @@ define([
 
             // append export information
             csv += '\r\n\n';
-            csv += '"'+ i18n.description +': ' + CONFIG.title;
+            csv += '"'+ i18n.description +': ' + sanitizeString(CONFIG.title) + '"\n';
             csv += '"'+ i18n.source +': ' + CONFIG.source + '"\n';
             csv += '"'+ i18n.date +': ' + new Date() + '"\n';
 
@@ -266,6 +266,11 @@ define([
                 var $col = $(col),
                     $text = $col.text();
                 return $text.replace('"', '""'); // escape double quotes
+            }
+
+            // dirty sinitaze of the string
+            function sanitizeString(text) {
+               return text.replace('<sub>', '').replace('</sub>', '');
             }
         }
 

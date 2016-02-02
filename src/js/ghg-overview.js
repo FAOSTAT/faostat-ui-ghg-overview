@@ -258,7 +258,7 @@ define([
 
         this.createChart("fs_world_chart", query_chart.sql, "pie", null, {
             title: i18n.world,
-            subtitle: i18n.agriculture_total + ' - Gg CO2eq (' + i18n.avg + ')'
+            subtitle: i18n.agriculture_total + ' - '+ i18n.gg_co2eq +' (' + i18n.avg + ')'
         });
         this.updateTableWorld(queries);
 
@@ -311,7 +311,7 @@ define([
         this.updateContinentSubRegionBoxes(json, json.query_regions, {
             id: "fs_continent",
             placeholder: "fs_continent_table",
-            title: i18n.by_continent + ' - FAOSTAT [Emissions Gg CO2eq]',
+            title: i18n.by_continent,
             header: {
                 column_0: i18n.region,
                 column_1: i18n.category
@@ -333,7 +333,7 @@ define([
         this.updateContinentSubRegionBoxes(json, json.query_sub_regions, {
             id: "fs_region",
             placeholder: "fs_region_table",
-            title: i18n.by_region  + ' - FAOSTAT [Emissions Gg CO2eq]',
+            title: i18n.by_region,
             header: {
                 column_0: i18n.region,
                 column_1: i18n.category
@@ -366,7 +366,7 @@ define([
         this.createChart("fs_chart_0", query_total.sql, 'timeserie', ['#9B2335'],
             {
                 title: this.CONFIG.selected_areanames,
-                subtitle: i18n.enteric_fermentation + ' (' + i18n.sum_of_countries + ')' + ' - Gg CO2eq'
+                subtitle: i18n.enteric_fermentation + ' (' + i18n.sum_of_countries + ')' + ' - '+ i18n.gg_co2eq +''
             }
         );
 
@@ -378,7 +378,7 @@ define([
         this.createChart("fs_chart_1", query_total.sql, 'timeserie', ['#E15D44'],
             {
                 title: this.CONFIG.selected_areanames,
-                subtitle: i18n.manure_management + ' (' + i18n.sum_of_countries + ')' + ' - Gg CO2eq'
+                subtitle: i18n.manure_management + ' (' + i18n.sum_of_countries + ')' + ' - '+ i18n.gg_co2eq +''
             }
         );
 
@@ -390,7 +390,7 @@ define([
         this.createChart("fs_chart_2", query_total.sql, 'timeserie', ['#5B5EA6'],
             {
                 title: this.CONFIG.selected_areanames,
-                subtitle: i18n.agricultural_soils + ' (' + i18n.sum_of_countries + ')' + ' - Gg CO2eq'
+                subtitle: i18n.agricultural_soils + ' (' + i18n.sum_of_countries + ')' + ' - '+ i18n.gg_co2eq +''
             }
         );
 
@@ -402,7 +402,7 @@ define([
         this.createChart("fs_chart_3", query_total.sql, 'timeserie', ['#EFC050'],
             {
                 title: this.CONFIG.selected_areanames,
-                subtitle: i18n.rice_cultivation + ' (' + i18n.sum_of_countries + ')' + ' - Gg CO2eq'
+                subtitle: i18n.rice_cultivation + ' (' + i18n.sum_of_countries + ')' + ' - '+ i18n.gg_co2eq +''
             }
         );
 
@@ -414,7 +414,7 @@ define([
         this.createChart("fs_chart_4", query_total.sql, 'timeserie', ['#DD4124'],
             {
                 title: this.CONFIG.selected_areanames,
-                subtitle: i18n.burning_crops_residues + ' (' + i18n.sum_of_countries + ')' + ' - Gg CO2eq'
+                subtitle: i18n.burning_crops_residues + ' (' + i18n.sum_of_countries + ')' + ' - '+ i18n.gg_co2eq +''
             }
         );
 
@@ -426,7 +426,7 @@ define([
         this.createChart("fs_chart_5", query_total.sql, 'timeserie', ['#C3447A'],
             {
                 title: this.CONFIG.selected_areanames,
-                subtitle: i18n.burning_savanna + ' (' + i18n.sum_of_countries + ')' + ' - Gg CO2eq'
+                subtitle: i18n.burning_savanna + ' (' + i18n.sum_of_countries + ')' + ' - '+ i18n.gg_co2eq +''
             }
         );
 
@@ -439,7 +439,7 @@ define([
             id_table = id + "_table",
             config = {
                 placeholder: id_table,
-                title: i18n.by_country + ' - FAOSTAT [Emissions Gg CO2eq]',
+                title: i18n.by_country + ' - FAOSTAT [Emissions '+ i18n.gg_co2eq +']',
                 header: {
                     column_0: i18n.country,
                     column_1: i18n.category
@@ -497,7 +497,7 @@ define([
         this.createTitle(id + "_total", query_total.sql);
         this.createChart(id + "_chart", query_chart.sql, "pie", null, {
             title: areanames,
-            subtitle: 'Gg CO2eq (' + i18n.avg + ')'
+            subtitle: ''+ i18n.gg_co2eq +' (' + i18n.avg + ')'
         });
 
     };
@@ -512,7 +512,7 @@ define([
         query_total = this.replaceValues(query_total, total_obj);
         this.createChart("fs_agriculture_total_chart", query_total.sql, 'timeserie', null, {
             title: i18n.world,
-            subtitle: i18n.agriculture_total + ' - Gg CO2eq (' + i18n.avg + ')'
+            subtitle: i18n.agriculture_total + ' - '+ i18n.gg_co2eq +' (' + i18n.avg + ')'
         });
 
     };
@@ -604,7 +604,7 @@ define([
         this.updateAreasTable(
             {
                 placeholder: "fs_world_table",
-                title: i18n.world + ' - FAOSTAT [Emissions Gg CO2eq]',
+                title: i18n.by_world,
                 header: {
                     column_0: "",
                     column_1: i18n.continent
