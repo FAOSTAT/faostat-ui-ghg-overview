@@ -207,6 +207,7 @@ define([
     GHG_OVERVIEW.prototype.updateView = function () {
 
         this.CONFIG.selected_areacodes = this.$COUNTRY_LIST.val();
+        this.CONFIG.selected_areanames = this.getAreaNames();
         this.CONFIG.selected_from_year = this.$FROM_YEAR.val();
         this.CONFIG.selected_to_year = this.$TO_YEAR.val();
 
@@ -249,7 +250,10 @@ define([
         chart_obj.areacode = arecode;
         query_chart = this.replaceValues(query_chart, chart_obj);
 
-        this.createChart("fs_world_chart", query_chart.sql, "pie");
+        this.createChart("fs_world_chart", query_chart.sql, "pie", null, {
+            title: i18n.world,
+            subtitle: i18n.agriculture_total + ' - Gg CO2eq (' + i18n.avg + ')'
+        });
         this.updateTableWorld(queries);
 
     };
@@ -281,7 +285,7 @@ define([
                     labels.push(response[i][1]);
                 }
 
-                self.createChartAreaBox(json, config.id, codes.join(","), labels.join(','));
+                self.createChartAreaBox(json, config.id, codes.join(","), labels.join(', '));
                 self.updateAreasTable(config, json.byarea_table, codes.join(","));
 
                 if (updateTimeserieAgricultureTotal) {
@@ -301,7 +305,7 @@ define([
         this.updateContinentSubRegionBoxes(json, json.query_regions, {
             id: "fs_continent",
             placeholder: "fs_continent_table",
-            title: i18n.by_continent,
+            title: i18n.by_continent + ' - FAOSTAT [Emissions Gg CO2eq]',
             header: {
                 column_0: i18n.region,
                 column_1: i18n.category
@@ -323,7 +327,7 @@ define([
         this.updateContinentSubRegionBoxes(json, json.query_sub_regions, {
             id: "fs_region",
             placeholder: "fs_region_table",
-            title: i18n.by_region,
+            title: i18n.by_region  + ' - FAOSTAT [Emissions Gg CO2eq]',
             header: {
                 column_0: i18n.region,
                 column_1: i18n.category
@@ -336,7 +340,7 @@ define([
                 column_1: i18n.agriculture_total
             },
             add_first_column: true,
-            updateTimeserieAgricultureTotal: true
+            updateTimeserieAgricultureTotal: true,
         });
 
     };
@@ -344,7 +348,8 @@ define([
     GHG_OVERVIEW.prototype.updateChartsByCountries = function (json) {
 
         var obj = this.getConfigurationObject(),
-            areacodes = this.getQueryAreaCodes();
+            areacodes = this.getQueryAreaCodes(),
+            areanames = this.getQueryAreaCodes();
 
         // Create Charts by item
         var query_total = json.byitem_chart;
@@ -352,42 +357,72 @@ define([
         total_obj.areacode = areacodes;
         total_obj.itemcode = ['5058'];
         query_total = this.replaceValues(query_total, total_obj);
-        this.createChart("fs_chart_0", query_total.sql, 'timeserie', ['#9B2335']);
+        this.createChart("fs_chart_0", query_total.sql, 'timeserie', ['#9B2335'],
+            {
+                title: this.CONFIG.selected_areanames,
+                subtitle: i18n.enteric_fermentation + ' (' + i18n.sum_of_countries + ')' + ' - Gg CO2eq'
+            }
+        );
 
         var query_total = json.byitem_chart;
         var total_obj = obj;
         total_obj.areacode = areacodes;
         total_obj.itemcode = ['5059'];
         query_total = this.replaceValues(query_total, total_obj);
-        this.createChart("fs_chart_1", query_total.sql, 'timeserie', ['#E15D44']);
+        this.createChart("fs_chart_1", query_total.sql, 'timeserie', ['#E15D44'],
+            {
+                title: this.CONFIG.selected_areanames,
+                subtitle: i18n.manure_management + ' (' + i18n.sum_of_countries + ')' + ' - Gg CO2eq'
+            }
+        );
 
         var query_total = json.byitem_chart;
         var total_obj = obj;
         total_obj.areacode = areacodes;
         total_obj.itemcode = ['1709'];
         query_total = this.replaceValues(query_total, total_obj);
-        this.createChart("fs_chart_2", query_total.sql, 'timeserie', ['#5B5EA6']);
+        this.createChart("fs_chart_2", query_total.sql, 'timeserie', ['#5B5EA6'],
+            {
+                title: this.CONFIG.selected_areanames,
+                subtitle: i18n.agricultural_soils + ' (' + i18n.sum_of_countries + ')' + ' - Gg CO2eq'
+            }
+        );
 
         var query_total = json.byitem_chart;
         var total_obj = obj;
         total_obj.areacode = areacodes;
         total_obj.itemcode = ['5060'];
         query_total = this.replaceValues(query_total, total_obj);
-        this.createChart("fs_chart_3", query_total.sql, 'timeserie', ['#EFC050']);
+        this.createChart("fs_chart_3", query_total.sql, 'timeserie', ['#EFC050'],
+            {
+                title: this.CONFIG.selected_areanames,
+                subtitle: i18n.rice_cultivation + ' (' + i18n.sum_of_countries + ')' + ' - Gg CO2eq'
+            }
+        );
 
         var query_total = json.byitem_chart;
         var total_obj = obj;
         total_obj.areacode = areacodes;
         total_obj.itemcode = ['5066'];
         query_total = this.replaceValues(query_total, total_obj);
-        this.createChart("fs_chart_4", query_total.sql, 'timeserie', ['#DD4124']);
+        this.createChart("fs_chart_4", query_total.sql, 'timeserie', ['#DD4124'],
+            {
+                title: this.CONFIG.selected_areanames,
+                subtitle: i18n.burning_crops_residues + ' (' + i18n.sum_of_countries + ')' + ' - Gg CO2eq'
+            }
+        );
 
         var query_total = json.byitem_chart;
         var total_obj = obj;
         total_obj.areacode = areacodes;
         total_obj.itemcode = ['5067'];
         query_total = this.replaceValues(query_total, total_obj);
-        this.createChart("fs_chart_5", query_total.sql, 'timeserie', ['#C3447A']);
+        this.createChart("fs_chart_5", query_total.sql, 'timeserie', ['#C3447A'],
+            {
+                title: this.CONFIG.selected_areanames,
+                subtitle: i18n.burning_savanna + ' (' + i18n.sum_of_countries + ')' + ' - Gg CO2eq'
+            }
+        );
 
     };
 
@@ -398,7 +433,7 @@ define([
             id_table = id + "_table",
             config = {
                 placeholder: id_table,
-                title: i18n.by_country,
+                title: i18n.by_country + ' - FAOSTAT [Emissions Gg CO2eq]',
                 header: {
                     column_0: i18n.country,
                     column_1: i18n.category
@@ -413,8 +448,8 @@ define([
                 add_first_column: true
             };
 
-        this.updateCountryListNames();
-        this.createChartAreaBox(json, id, codes, null);
+        var areanames = this.updateCountryListNames();
+        this.createChartAreaBox(json, id, codes, areanames);
         this.updateAreasTable(config, json.byarea_table, codes);
 
     };
@@ -429,6 +464,8 @@ define([
             }
         }
         this.$COUNTRY_TOTAL_NAME.html(labels.join(", "));
+
+        return labels.join(", ");
 
     };
 
@@ -452,7 +489,10 @@ define([
         query_chart = this.replaceValues(query_chart, chart_obj);
 
         this.createTitle(id + "_total", query_total.sql);
-        this.createChart(id + "_chart", query_chart.sql, "pie");
+        this.createChart(id + "_chart", query_chart.sql, "pie", null, {
+            title: areanames,
+            subtitle: 'Gg CO2eq (' + i18n.avg + ')'
+        });
 
     };
 
@@ -464,7 +504,10 @@ define([
 
         total_obj.areacode = areacodes;
         query_total = this.replaceValues(query_total, total_obj);
-        this.createChart("fs_agriculture_total_chart", query_total.sql, 'timeserie');
+        this.createChart("fs_agriculture_total_chart", query_total.sql, 'timeserie', null, {
+            title: i18n.world,
+            subtitle: i18n.agriculture_total + ' - Gg CO2eq (' + i18n.avg + ')'
+        });
 
     };
 
@@ -481,7 +524,7 @@ define([
             success: function (response) {
                 $("#" + id + "_element").html(response[0][0]);
                 var value = Number(parseFloat(response[0][1]).toFixed(self.CONFIG.decimal_values)).toLocaleString();
-                $("#" + id + "_value").html(value)
+                $("#" + id + "_value").html(value);
             },
             error: function (err, b, c) {
             }
@@ -489,7 +532,9 @@ define([
 
     };
 
-    GHG_OVERVIEW.prototype.createChart = function (id, sql, type, colors) {
+    GHG_OVERVIEW.prototype.createChart = function (id, sql, type, colors, exportObj) {
+
+        console.log(exportObj);
 
         $(id).show();
         var data = {};
@@ -516,10 +561,10 @@ define([
                                 name: i18n.pie_mu
                             };
                             chartObj.colors = colors || self.getColorsPie(response) || null;
-                            c.createPie(chartObj, response, HighChartsConfig.pie);
+                            c.createPie(chartObj, response, HighChartsConfig.pie, exportObj);
                             break;
                         case "timeserie" :
-                            c.createTimeserie(chartObj, 'line', [response], HighChartsConfig.timeseries);
+                            c.createTimeserie(chartObj, 'line', [response], HighChartsConfig.timeseries, exportObj);
                             break;
                     }
                 }
@@ -553,7 +598,7 @@ define([
         this.updateAreasTable(
             {
                 placeholder: "fs_world_table",
-                title: i18n.world,
+                title: i18n.world + ' - FAOSTAT [Emissions Gg CO2eq]',
                 header: {
                     column_0: "",
                     column_1: i18n.continent
@@ -629,7 +674,22 @@ define([
 
     GHG_OVERVIEW.prototype.getQueryAreaCodes = function () {
 
-        return this.CONFIG.selected_areacodes.join(",");
+        return this.CONFIG.selected_areacodes.join(", ");
+    };
+
+    GHG_OVERVIEW.prototype.getAreaNames = function () {
+
+        var areanames = this.$COUNTRY_LIST.find('option:selected');
+
+        var l = [];
+        for(var i=0; i <= areanames.length; i++) {
+            var label = $(areanames[i]).text();
+            if ( label !== '') {
+                l.push($(areanames[i]).text());
+            }
+        }
+
+        return l.join(", ");
     };
 
     GHG_OVERVIEW.prototype.replaceValues = function (data, obj) {

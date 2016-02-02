@@ -41,7 +41,11 @@ define({
         'avg': 'Average',
 
         charts: 'Charts',
-        tables: 'Tables'
+        tables: 'Tables',
+
+        description: 'Description',
+        source: 'Source',
+        date: 'Date'
 
     },
     'F' : true,

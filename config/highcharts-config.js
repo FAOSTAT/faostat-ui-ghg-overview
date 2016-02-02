@@ -42,13 +42,25 @@ define([], function () {
                 }
             },
             credits: {
-                enabled: false
-            }
-            ,
+                enabled: true,
+                text: 'Source: FAO - AFOLU Emissions Analysis Tools'
+            },
             exporting: {
-                enabled: true
-            }
-            ,
+                enabled: true,
+                chartOptions:{
+                    subtitle: {
+                        enabled: true,
+                        text: ''
+                    },
+                    legend:{
+                        enabled:true,
+                        title: {
+                            text: ''
+                        }
+                    }
+                }
+
+            },
             navigation: {
                 buttonOptions: {
                     theme: {
@@ -111,7 +123,7 @@ define([], function () {
                     dataLabels: {
                         enabled: true,
                         formatter: function () {
-                            return Math.round(parseFloat(this.percentage).toFixed(1) * 100) / 100 + ' %';
+                            return  this.y + '<br> (' + Math.round(parseFloat(this.percentage).toFixed(1) * 100) / 100 + ' %)';
                         }
                     },
                     showInLegend: true
@@ -122,13 +134,11 @@ define([], function () {
                 enabled: true,
                 text: null,
                 x: -20
-            }
-            ,
+            },
             subtitle: {
                 text: null,
                 x: -20
-            }
-            ,
+            },
             tooltip: {
                 shadow: false,
                 crosshairs: true,
@@ -172,12 +182,6 @@ define([], function () {
                     }
 
                 }
-            },
-            credits: {
-                enabled: false
-            },
-            exporting: {
-                enabled: true
             },
             navigation: {
                 buttonOptions: {
@@ -289,7 +293,27 @@ define([], function () {
                 valueDecimals: 2,
                 valuePrefix: '',
                 valueSuffix: ''
-            }
+            },
+            credits: {
+                enabled: true,
+                text: 'Source: FAO - AFOLU Emissions Analysis Tools'
+            },
+            exporting: {
+                enabled: true,
+                chartOptions:{
+                    subtitle: {
+                        enabled: true,
+                        text: ''
+                    },
+                    legend:{
+                        enabled:true,
+                        title: {
+                            text: ''
+                        }
+                    }
+                }
+
+            },
         }
     }
 

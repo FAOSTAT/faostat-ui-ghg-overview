@@ -20,7 +20,7 @@ define([
         ];
 
 
-        function createPie(obj, data, highchartsConfig) {
+        function createPie(obj, data, highchartsConfig, exportObj) {
 
             var colors = obj.colors,
                 series = [],
@@ -36,18 +36,48 @@ define([
             series.push(serie);
 
             var chart = {
+
+                /*title: {
+                    enabled: true,
+                    text: exportObj.title
+                },
+                subtitle: {
+                    enabled: true,
+                    text: exportObj.subtitle
+                },*/
+
                 chart: {
                     renderTo: obj.renderTo
                 },
                 colors: colors,
-                series: series
+                series: series,
+
+                // export object
+                exporting: {
+                    chartOptions:{
+                        title: {
+                            enabled: true,
+                            text: exportObj.title
+                        },
+                        subtitle: {
+                            enabled: true,
+                            text: exportObj.subtitle
+                        },
+                        legend:{
+                            enabled:true,
+                        }
+                    }
+                }
             };
+
+
+            console.log(exportObj);
 
             var c = new Highcharts.Chart($.extend(true, {}, highchartsConfig, chart));
 
         }
 
-        function createTimeserie(chart, type, s, highchartsConfig) {
+        function createTimeserie(chart, type, s, highchartsConfig, exportObj) {
 
             /* colors */
             var colors = chart.colors || COLORS;
@@ -187,8 +217,9 @@ define([
                     a.title.text = mus[i];
                     a.title.style = {};
                     a.title.style.color = colors[i];
-                    if (i > 0)
+                    if (i > 0) {
                         a.opposite = true;
+                    }
                     a.labels = {};
                     a.labels.style = {
                         color: '#666666',
@@ -202,6 +233,17 @@ define([
             }
 
             var chart = {
+
+                /*title: {
+                    enabled: true,
+                    text: exportObj.title
+                },
+                subtitle: {
+                    enabled: true,
+                    text: exportObj.subtitle
+                },*/
+
+
                 chart: {
                     type: type,
                     renderTo: chart.renderTo
@@ -211,8 +253,26 @@ define([
                     categories: years
                 },
                 yAxis: yAxis,
-                series: series
+                series: series,
+                // export object
+                exporting: {
+                    chartOptions:{
+                        title: {
+                            enabled: true,
+                            text: exportObj.title
+                        },
+                        subtitle: {
+                            enabled: true,
+                            text: exportObj.subtitle
+                        },
+                        legend:{
+                            enabled:true,
+                        }
+                    }
+                }
             }
+
+            // export object
 
             var c = new Highcharts.Chart($.extend(true, {}, highchartsConfig, chart));
         }

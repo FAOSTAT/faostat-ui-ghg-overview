@@ -15,7 +15,8 @@ define([
             export_id: '',
             decimal_values: 2,
             add_first_column: true,
-            thousand_separator: ','
+            thousand_separator: ',',
+            source: 'FAO - AFOLU Emissions Analysis Tools'
         },
             i18n = null;
 
@@ -38,7 +39,7 @@ define([
 
             CONFIG.export_id = CONFIG.export_id || CONFIG.prefix + '_export';
             $('#' + CONFIG.export_id).on('click', function() {
-                exportTableToCSV($('#' + CONFIG.prefix), CONFIG.title.toLocaleLowerCase() + ' data.csv');
+                exportTableToCSV($('#' + CONFIG.prefix), CONFIG.title.toLocaleLowerCase() + ' data.csv', i18n);
             });
 
         }
@@ -94,6 +95,7 @@ define([
             years.forEach(function (y) {
                 s += "<td class='" + classDiv + "' id='" + CONFIG.prefix + "_total_" + y + "'>-</td>";
             });
+            s += "</tr>";
             s += "</tr>";
             s += "</tbody>";
             s += "</table>";
@@ -199,7 +201,7 @@ define([
             return rows;
         }
 
-        function exportTableToCSV($table, filename) {
+        function exportTableToCSV($table, filename, i18n, exportObj) {
             var $headers = $table.find('tr:has(th)'),
                 $rows = $table.find('tr:has(td)'),
 
@@ -217,6 +219,13 @@ define([
             csv += formatRows($headers.map(grabRow));
             csv += rowDelim;
             csv += formatRows($rows.map(grabRow)) + '"';
+
+            // append export information
+            csv += '\r\n\n';
+            csv += '"'+ i18n.description +': ' + CONFIG.title;
+            csv += '"'+ i18n.source +': ' + CONFIG.source + '"\n';
+            csv += '"'+ i18n.date +': ' + new Date() + '"\n';
+
 
             // Data URI
             //var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
