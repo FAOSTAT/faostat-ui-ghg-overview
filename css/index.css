@@ -46,3 +46,11 @@
 .tabpanel .nav-tabs > li > a {
     font-size: 13px;
 }
+
+.ghg-small-charts {
+    height: 250px;
+}
+
+.fs-overview-chart-total {
+    height: 320px;
+}

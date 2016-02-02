@@ -25,7 +25,7 @@
     <br>
     <div class="row" id="fs_overview_note">
         <div class="col-xs-12">
-            <h3 class="text-center">{{{ghg_overview_note}}}</h3>
+            <h4 class="text-center">{{{ghg_overview_note}}}</h4>
         </div>
     </div>
 </div>
@@ -51,12 +51,12 @@
 
     <div class='tab-content'>
 
-            <div class='tab-pane active' id='fs-overview-charts'>
+            <div class='tab-pane active' id='fs-overview-charts' style="padding-top:15px">
 
                 <div class="row">
                     <div class="col-xs-6">
                         <div id="fs_country_total">
-                            <h2>{{countries}}</h2>
+                            <h4>{{countries}}</h4>
                             <div class="fs_overview_subtitle" id="fs_country_total_name"></div>
                             <b><span id="fs_country_total_value"></span></b>
                             <span class="overview_mu"><i>{{gg_co2eq}}</i> ({{avg}})</span>
@@ -66,7 +66,7 @@
 
                     <div class="col-xs-6">
                         <div id="fs_region_total">
-                            <h2>{{regions}}</h2>
+                            <h4>{{regions}}</h4>
                             <div class="fs_overview_subtitle" id="fs_region_total_name"></div>
                             <b><span id="fs_region_total_value"></span></b>
                             <span class="overview_mu"><i>{{gg_co2eq}}</i> ({{avg}})</span>
@@ -78,7 +78,7 @@
                 <div class="row">
                     <div class="col-xs-6">
                         <div id="fs_continent_total">
-                            <h2>{{continents}}</h2>
+                            <h4>{{continents}}</h4>
                             <div class="fs_overview_subtitle" id="fs_continent_total_name"></div>
                             <b><span id="fs_continent_total_value"></span></b>
                             <span class="overview_mu"><i>{{gg_co2eq}}</i> ({{avg}})</span>
@@ -87,7 +87,7 @@
                     </div>
                     <div class="col-xs-6">
                         <div id="fs_world_total">
-                            <h2>{{world}}</h2>
+                            <h4>{{world}}</h4>
                             <div class="fs_overview_subtitle">{{agriculture_total}}</div>
                             <b><span id="fs_world_total_value"></span></b>
                             <span class="overview_mu"><i>{{gg_co2eq}}</i> ({{avg}})</span>
@@ -98,18 +98,18 @@
 
                 <div class="row">
                     <div class="col-xs-12">
-                        <h2>{{agriculture_total}} ({{country_region}})</h2>
+                        <h4>{{agriculture_total}} ({{country_region}})</h4>
                         <div id="fs_agriculture_total_chart" class="fs-overview-chart-total"><i class='fa fa-refresh fa-spin fa-2x'></i></div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-xs-6">
-                        <h2>{{enteric_fermentation}} ({{sum_of_countries}})</h2>
+                        <h4>{{enteric_fermentation}} ({{sum_of_countries}})</h4>
                         <div id="fs_chart_0" class="ghg-small-charts"><i class='fa fa-refresh fa-spin fa-2x'></i></div>
                     </div>
                     <div class="col-xs-6">
-                        <h2>{{manure_management}} ({{sum_of_countries}})</h2>
+                        <h4>{{manure_management}} ({{sum_of_countries}})</h4>
                         <div id="fs_chart_1" class="ghg-small-charts"><i class='fa fa-refresh fa-spin fa-2x'></i></div>
                     </div>
                 </div>
@@ -117,22 +117,22 @@
 
                 <div class="row">
                     <div class="col-xs-6">
-                        <h2>{{agricultural_soils}} ({{sum_of_countries}})</h2>
+                        <h4>{{agricultural_soils}} ({{sum_of_countries}})</h4>
                         <div id="fs_chart_2" class="ghg-small-charts"><i class='fa fa-refresh fa-spin fa-2x'></i></div>
                     </div>
                     <div class="col-xs-6">
-                        <h2>{{rice_cultivation}} ({{sum_of_countries}})</h2>
+                        <h4>{{rice_cultivation}} ({{sum_of_countries}})</h4>
                         <div  id="fs_chart_3" class="ghg-small-charts"><i class='fa fa-refresh fa-spin fa-2x'></i></div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-xs-6">
-                        <h2>{{burning_crops_residues}} ({{sum_of_countries}})</h2>
+                        <h4>{{burning_crops_residues}} ({{sum_of_countries}})</h4>
                         <div id="fs_chart_4" class="ghg-small-charts"><i class='fa fa-refresh fa-spin fa-2x'></i></div>
                     </div>
                     <div class="col-xs-6">
-                        <h2>{{burning_savanna}} ({{sum_of_countries}})</h2>
+                        <h4>{{burning_savanna}} ({{sum_of_countries}})</h4>
                         <div id="fs_chart_5" class="ghg-small-charts"><i class='fa fa-refresh fa-spin fa-2x'></i></div>
                     </div>
                 </div>
@@ -146,31 +146,31 @@
 
 
             <!--<div id="fs-overview-tables" style="display:none">-->
-            <div class='tab-pane' id='fs-overview-tables'>
+            <div class='tab-pane' id='fs-overview-tables' style="padding-top:15px">
                 <div class="row">
-                    <div class='col-xs-9'><h1>{{world}}</h1></div>
-                    <div id='fs_world_table_export' class='col-xs-3' style='cursor:pointer'><h1 class="pull-right"><i class='fa fa-download'></i> {{export}}</h1></div>
+                    <div class='col-xs-9'><h4>{{world}}</h4></div>
+                    <div id='fs_world_table_export' class='col-xs-3' style='cursor:pointer'><h4 class="pull-right"><i class='fa fa-download'></i> {{export}}</h4></div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12" id="fs_world_table"></div>
                 </div>
                 <div class="row">
-                    <div class='col-xs-9'><h1>{{by_continent}}</h1></div>
-                    <div id='fs_continent_table_export' class='col-xs-3' style='cursor:pointer'><h1 class="pull-right"><i class='fa fa-download'></i> {{export}}</h1></div>
+                    <div class='col-xs-9'><h4>{{by_continent}}</h4></div>
+                    <div id='fs_continent_table_export' class='col-xs-3' style='cursor:pointer'><h4 class="pull-right"><i class='fa fa-download'></i> {{export}}</h4></div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12" id="fs_continent_table"></div>
                 </div>
                 <div class="row">
-                    <div class='col-xs-9'><h1>{{by_region}}</h1></div>
-                    <div id='fs_region_table_export' class='col-xs-3' style='cursor:pointer'><h1 class="pull-right"><i class='fa fa-download'></i> {{export}}</h1></div>
+                    <div class='col-xs-9'><h4>{{by_region}}</h4></div>
+                    <div id='fs_region_table_export' class='col-xs-3' style='cursor:pointer'><h4 class="pull-right"><i class='fa fa-download'></i> {{export}}</h4></div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12" id="fs_region_table"></div>
                 </div>
                 <div class="row">
-                    <div class='col-xs-9'><h1>{{by_country}}</h1></div>
-                    <div id='fs_country_table_export' class='col-xs-3' style='cursor:pointer'><h1 class="pull-right"><i class='fa fa-download'></i> {{export}}</h1></div>
+                    <div class='col-xs-9'><h4>{{by_country}}</h4></div>
+                    <div id='fs_country_table_export' class='col-xs-3' style='cursor:pointer'><h4 class="pull-right"><i class='fa fa-download'></i> {{export}}</h4></div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12" id="fs_country_table"></div>

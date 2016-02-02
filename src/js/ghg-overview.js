@@ -71,7 +71,8 @@ define([
                 overview_panel: "#fs_overview_panel",
                 world_total: '#fs_world_total',
                 country_total_name: '#fs_country_total_name',
-                note: '#fs_overview_note'
+                note: '#fs_overview_note',
+                charts_panel: '#fs-overview-charts'
 
             }
         };
@@ -128,6 +129,11 @@ define([
         var self = this;
         this.$TABLE_BUTTON.on('click', function () {
             $(self.CONFIG.s.table).toggle();
+        });
+
+        // tab listener
+        $('a[data-toggle="tab"]').on('click', function (e) {
+            self.updateView();
         });
 
     };

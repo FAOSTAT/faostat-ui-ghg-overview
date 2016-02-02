@@ -71,8 +71,7 @@ define([], function () {
                             hover: {
                                 stroke: '#666666',
                                 fill: '#e6e6e6'
-                            }
-                            ,
+                            },
                             select: {
                                 stroke: '#666666',
                                 fill: '#e6e6e6'
@@ -82,24 +81,22 @@ define([], function () {
                 }
             },
             legend: {
-                align: 'right',
-                verticalAlign: 'middle',
-                layout: 'vertical',
+                //align: 'right',
+                //verticalAlign: 'middle',
+                //layout: 'vertical',
 
-                itemMarginTop: 5,
-                itemMarginBottom: 5,
+                itemMarginTop: 0,
+                itemMarginBottom: 15,
                 itemStyle: {
                     cursor: 'pointer',
                     color: '#666666',
                     fontSize: '11px',
                     fontWeight: 300
-                }
-                ,
+                },
                 itemWidth: 150,
                 itemHiddenStyle: {
                     color: '#eeeeee'
-                }
-                ,
+                },
                 itemHoverStyle: {
                     color: '#3ca7da'
                 }
@@ -208,8 +205,8 @@ define([], function () {
                 backgroundColor: '#FFFFFF',
                 align: 'center',
                 verticalAlign: 'bottom',
-                borderWidth: 0,
-                symbolPadding: 10,
+                itemMarginTop: 0,
+                itemMarginBottom: 15,
                 itemStyle: {
                     cursor: 'pointer',
                     color: '#666666',
@@ -312,8 +309,7 @@ define([], function () {
                         }
                     }
                 }
-
-            },
+            }
         }
     }
 
