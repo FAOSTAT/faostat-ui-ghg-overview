@@ -60,7 +60,8 @@ define([], function () {
 
         "byitem_chart" : {
             "sql" : {
-                "query": "SELECT D.Year, I.ItemName{{LANG}}, SUM(D.Value), E.UnitName{{LANG}} FROM Data AS D, Element E, Item I WHERE D.DomainCode IN ({{DOMAINCODE}}) AND D.ItemCode = I.ItemCode AND D.AreaCode IN ({{AREACODE}}) AND D.ElementCode IN ('7231') AND D.ItemCode IN ({{ITEMCODE}}) AND D.ElementCode = E.ElementCode AND D.Year >= {{FROMYEAR}} AND D.Year <= {{TOYEAR}} AND D.Value > 0 GROUP BY D.Year, I.ItemName{{LANG}}, E.UnitName{{LANG}} ORDER BY I.ItemName{{LANG}}, D.Year, E.UnitName{{LANG}}"
+                "query": "SELECT D.Year, A.AreaName{{LANG}}, SUM(D.Value), E.UnitName{{LANG}} FROM Data AS D, Element E, Area A WHERE D.DomainCode IN ({{DOMAINCODE}})  AND D.AreaCode =A.AreaCode AND D.AreaCode IN ({{AREACODE}}) AND D.ElementCode IN ('7231') AND D.ItemCode IN ({{ITEMCODE}}) AND D.ElementCode = E.ElementCode AND D.Year >= {{FROMYEAR}} AND D.Year <= {{TOYEAR}} AND D.Value > 0 GROUP BY D.Year, A.AreaName{{LANG}}, E.UnitName{{LANG}} ORDER BY A.AreaName{{LANG}}, D.Year, E.UnitName{{LANG}}"
+                //"query": "SELECT D.Year, I.ItemName{{LANG}}, SUM(D.Value), E.UnitName{{LANG}} FROM Data AS D, Element E, Item I WHERE D.DomainCode IN ({{DOMAINCODE}}) AND D.ItemCode = I.ItemCode AND D.AreaCode IN ({{AREACODE}}) AND D.ElementCode IN ('7231') AND D.ItemCode IN ({{ITEMCODE}}) AND D.ElementCode = E.ElementCode AND D.Year >= {{FROMYEAR}} AND D.Year <= {{TOYEAR}} AND D.Value > 0 GROUP BY D.Year, I.ItemName{{LANG}}, E.UnitName{{LANG}} ORDER BY I.ItemName{{LANG}}, D.Year, E.UnitName{{LANG}}"
             }
         }
 

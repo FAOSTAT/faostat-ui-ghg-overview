@@ -346,7 +346,7 @@ define([
                 column_1: i18n.agriculture_total
             },
             add_first_column: true,
-            updateTimeserieAgricultureTotal: true,
+            updateTimeserieAgricultureTotal: true
         });
 
     };
@@ -355,7 +355,8 @@ define([
 
         var obj = this.getConfigurationObject(),
             areacodes = this.getQueryAreaCodes(),
-            areanames = this.getQueryAreaCodes();
+            areanames = this.getQueryAreaCodes(),
+            timerange = this.getTimerange()
 
         // Create Charts by item
         var query_total = json.byitem_chart;
@@ -363,10 +364,16 @@ define([
         total_obj.areacode = areacodes;
         total_obj.itemcode = ['5058'];
         query_total = this.replaceValues(query_total, total_obj);
-        this.createChart("fs_chart_0", query_total.sql, 'timeserie', ['#9B2335'],
-            {
+        this.createChart("fs_chart_0", query_total.sql, 'timeserie',
+            //['#9B2335'],
+            null,
+/*            {
                 title: this.CONFIG.selected_areanames,
                 subtitle: i18n.enteric_fermentation + ' (' + i18n.sum_of_countries + ')' + ' - '+ i18n.gg_co2eq +''
+            }*/
+            {
+                title: i18n.enteric_fermentation,
+                subtitle: i18n.gg_co2eq
             }
         );
 
@@ -375,10 +382,16 @@ define([
         total_obj.areacode = areacodes;
         total_obj.itemcode = ['5059'];
         query_total = this.replaceValues(query_total, total_obj);
-        this.createChart("fs_chart_1", query_total.sql, 'timeserie', ['#E15D44'],
-            {
+        this.createChart("fs_chart_1", query_total.sql, 'timeserie',
+            // ['#E15D44'],
+            null,
+/*            {
                 title: this.CONFIG.selected_areanames,
-                subtitle: i18n.manure_management + ' (' + i18n.sum_of_countries + ')' + ' - '+ i18n.gg_co2eq +''
+                subtitle: i18n.manure_management + ' (' + i18n.sum_of_countries + ')' + ' - ' + i18n.gg_co2eq + ''
+            }*/
+            {
+                title: i18n.manure_management,
+                subtitle: i18n.gg_co2eq
             }
         );
 
@@ -387,10 +400,16 @@ define([
         total_obj.areacode = areacodes;
         total_obj.itemcode = ['1709'];
         query_total = this.replaceValues(query_total, total_obj);
-        this.createChart("fs_chart_2", query_total.sql, 'timeserie', ['#5B5EA6'],
-            {
+        this.createChart("fs_chart_2", query_total.sql, 'timeserie',
+            //['#5B5EA6'],
+            null,
+/*            {
                 title: this.CONFIG.selected_areanames,
                 subtitle: i18n.agricultural_soils + ' (' + i18n.sum_of_countries + ')' + ' - '+ i18n.gg_co2eq +''
+            }*/
+            {
+                title: i18n.agricultural_soils,
+                subtitle: i18n.gg_co2eq
             }
         );
 
@@ -399,10 +418,16 @@ define([
         total_obj.areacode = areacodes;
         total_obj.itemcode = ['5060'];
         query_total = this.replaceValues(query_total, total_obj);
-        this.createChart("fs_chart_3", query_total.sql, 'timeserie', ['#EFC050'],
-            {
+        this.createChart("fs_chart_3", query_total.sql, 'timeserie',
+            //['#EFC050'],
+            null,
+/*            {
                 title: this.CONFIG.selected_areanames,
                 subtitle: i18n.rice_cultivation + ' (' + i18n.sum_of_countries + ')' + ' - '+ i18n.gg_co2eq +''
+            }*/
+            {
+                title: i18n.rice_cultivation,
+                subtitle: i18n.gg_co2eq
             }
         );
 
@@ -411,10 +436,16 @@ define([
         total_obj.areacode = areacodes;
         total_obj.itemcode = ['5066'];
         query_total = this.replaceValues(query_total, total_obj);
-        this.createChart("fs_chart_4", query_total.sql, 'timeserie', ['#DD4124'],
-            {
+        this.createChart("fs_chart_4", query_total.sql, 'timeserie',
+            //['#DD4124'],
+            null,
+/*            {
                 title: this.CONFIG.selected_areanames,
                 subtitle: i18n.burning_crops_residues + ' (' + i18n.sum_of_countries + ')' + ' - '+ i18n.gg_co2eq +''
+            }*/
+            {
+                title: i18n.burning_crops_residues,
+                subtitle: i18n.gg_co2eq
             }
         );
 
@@ -423,10 +454,16 @@ define([
         total_obj.areacode = areacodes;
         total_obj.itemcode = ['5067'];
         query_total = this.replaceValues(query_total, total_obj);
-        this.createChart("fs_chart_5", query_total.sql, 'timeserie', ['#C3447A'],
-            {
+        this.createChart("fs_chart_5", query_total.sql, 'timeserie',
+            //['#C3447A'],
+            null,
+/*            {
                 title: this.CONFIG.selected_areanames,
                 subtitle: i18n.burning_savanna + ' (' + i18n.sum_of_countries + ')' + ' - '+ i18n.gg_co2eq +''
+            }*/
+            {
+                title: i18n.burning_savanna,
+                    subtitle: i18n.gg_co2eq
             }
         );
 
@@ -493,11 +530,12 @@ define([
         var chart_obj = obj;
         chart_obj.areacode = areacode;
         query_chart = this.replaceValues(query_chart, chart_obj);
+        var timerange = this.getTimerange();
 
         this.createTitle(id + "_total", query_total.sql);
         this.createChart(id + "_chart", query_chart.sql, "pie", null, {
             title: areanames,
-            subtitle: ''+ i18n.gg_co2eq +' (' + i18n.avg + ')'
+            subtitle: i18n.gg_co2eq + ' (' + i18n.avg + ' ' +  timerange + ')'
         });
 
     };
@@ -506,13 +544,13 @@ define([
 
         var total_obj = this.getConfigurationObject(),
             areacodes = this.getQueryAreaCodes() + ',' + regions,
-            query_total = json.agriculture_total_chart;
+            query_total = json.agriculture_total_chart
 
         total_obj.areacode = areacodes;
         query_total = this.replaceValues(query_total, total_obj);
         this.createChart("fs_agriculture_total_chart", query_total.sql, 'timeserie', null, {
-            title: i18n.world,
-            subtitle: i18n.agriculture_total + ' - '+ i18n.gg_co2eq +' (' + i18n.avg + ')'
+            title: i18n.agriculture_total,
+            subtitle: i18n.gg_co2eq
         });
 
     };
@@ -673,6 +711,15 @@ define([
             domaincode: "'" + this.CONFIG.domaincode + "'",
             aggregation: this.CONFIG.selected_aggregation
         };
+
+    };
+
+    GHG_OVERVIEW.prototype.getTimerange = function () {
+
+        var fromyear = this.CONFIG.timerange[0],
+            toyear = this.CONFIG.timerange[1];
+
+        return (fromyear === toyear)? fromyear: fromyear  + "-" + toyear;
 
     };
 
