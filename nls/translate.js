@@ -46,7 +46,9 @@ define({
 
         description: 'Description',
         source: 'Source',
-        date: 'Date'
+        date: 'Date',
+
+        max_selection_available: "Maximum 4 countries are allowed. Please select less countries."
 
     },
     'F' : true,

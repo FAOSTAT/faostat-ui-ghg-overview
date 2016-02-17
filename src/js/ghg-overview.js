@@ -9,7 +9,8 @@ define([
     'f3-ghg-chart',
     'faostat_ui_ghg_overview/config/highcharts-config',
     'chosen',
-    'bootstrap'
+    'bootstrap',
+    'sweetAlert'
 ], function ($, Handlebars, template, queries, i18n, Table, Chart, HighChartsConfig) {
 
     'use strict';
@@ -20,6 +21,8 @@ define([
 
             placeholder: 'container',
             lang: 'E',
+
+            MAX_SELECTED_COUNTRIES: 4,
 
             // DATASOURCE
             datasource: 'faostatdb',
@@ -72,7 +75,9 @@ define([
                 world_total: '#fs_world_total',
                 country_total_name: '#fs_country_total_name',
                 note: '#fs_overview_note',
-                charts_panel: '#fs-overview-charts'
+                charts_panel: '#fs-overview-charts',
+
+                max_countries_message: '#fs_overview_max_countries'
 
             }
         };
@@ -113,6 +118,7 @@ define([
         this.$OVERVIEW_PANEL = this.$CONTRAINER.find(this.CONFIG.s.overview_panel);
         this.$COUNTRY_TOTAL_NAME = this.$CONTRAINER.find(this.CONFIG.s.country_total_name);
         this.$NOTE = this.$CONTRAINER.find(this.CONFIG.s.note);
+        this.$MAX_COUNTRIES_MESSAGE = this.$CONTRAINER.find(this.CONFIG.s.max_countries_message);
 
     };
 
@@ -218,21 +224,40 @@ define([
         this.CONFIG.selected_to_year = this.$TO_YEAR.val();
 
         if (this.CONFIG.selected_areacodes !== null) {
-            // show panel
-            this.$NOTE.hide();
-            this.$OVERVIEW_PANEL.show();
 
-            // update views
-            this.updateCountryBoxes(queries);
-            this.updateWorldBoxes(queries);
-            this.updateContinentBoxes(queries);
-            this.updateSubRegionBoxes(queries);
+            if (this.CONFIG.selected_areacodes.length <= this.CONFIG.MAX_SELECTED_COUNTRIES) {
 
-            this.updateChartsByCountries(queries);
+                // show overview panel
+                this.$NOTE.hide();
+                this.$MAX_COUNTRIES_MESSAGE.hide();
+                this.$OVERVIEW_PANEL.show();
+
+                // update views
+                this.updateCountryBoxes(queries);
+                this.updateWorldBoxes(queries);
+                this.updateContinentBoxes(queries);
+                this.updateSubRegionBoxes(queries);
+
+                this.updateChartsByCountries(queries);
+            }
+            else {
+
+                // too many countries selected, show message.
+                this.$NOTE.hide();
+                this.$OVERVIEW_PANEL.hide();
+                this.$MAX_COUNTRIES_MESSAGE.show();
+                /*            swal({
+                 title: "",
+                 text: i18n.max_selection_available,
+                 type: "warning"
+                 });*/
+            }
         }
         else {
+            // no areas selected
             this.$NOTE.show();
             this.$OVERVIEW_PANEL.hide();
+            this.$MAX_COUNTRIES_MESSAGE.hide();
         }
 
     };
