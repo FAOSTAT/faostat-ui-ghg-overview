@@ -22,7 +22,9 @@ define([
             placeholder: 'container',
             lang: 'E',
 
-            MAX_SELECTED_COUNTRIES: 4,
+            // Intentionally high to avoid max selection message.
+            // Customize it to limit max country selectable
+            MAX_SELECTED_COUNTRIES: 1000,
 
             // DATASOURCE
             datasource: 'faostatdb',
@@ -568,7 +570,8 @@ define([
     GHG_OVERVIEW.prototype.updateTimeserieAgricultureTotal = function (json, regions) {
 
         var total_obj = this.getConfigurationObject(),
-            areacodes = this.getQueryAreaCodes() + ',' + regions,
+            //areacodes = this.getQueryAreaCodes() + ',' + regions,
+            areacodes = this.getQueryAreaCodes(),
             query_total = json.agriculture_total_chart
 
         total_obj.areacode = areacodes;
