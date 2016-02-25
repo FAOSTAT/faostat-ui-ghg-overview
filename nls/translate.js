@@ -36,6 +36,7 @@ define({
         'total': 'Total',
         'pie_mu': 'Gg CO<sub>2</sub>eq',
         'gg_co2eq': 'Gg CO<sub>2</sub>eq',
+        'co2eq': ' CO<sub>2</sub>eq',
 
         'user_instructions': 'User Instructions',
         'export': 'Export',
