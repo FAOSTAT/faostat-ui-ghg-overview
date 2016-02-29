@@ -17,7 +17,7 @@ define({
         'agricultural_soils': 'Agricultural Soils',
         'rice_cultivation': 'Rice Cultivation',
         'burning_crops_residues': 'Burning  Crops Residues',
-        'burning_savanna': 'Burning  Savanna',
+        'burning_savanna': 'Burning Savanna',
         'ghg_overview_title': 'Regional overview of the emissions',
         'ghg_overview_note': 'Start by selecting the country(ies) and other relevant details above. <br> The tool will return a series of results in graphical and tabular format. <br>When selecting two or more countries, the information will be presented as a sum.<br>For more information, a user instruction guide is available here.',
         'ghg_overview_subnote': 'For more information, a user instruction guide is available here.',
@@ -36,7 +36,7 @@ define({
         'total': 'Total',
         'pie_mu': 'Gg CO<sub>2</sub>eq',
         'gg_co2eq': 'Gg CO<sub>2</sub>eq',
-        'co2eq': ' CO<sub>2</sub>eq',
+        'co2eq': 'CO<sub>2</sub>eq',
 
         'user_instructions': 'User Instructions',
         'export': 'Export',
