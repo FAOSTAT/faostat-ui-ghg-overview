@@ -1,4 +1,4 @@
-/*global define, console*/
+/*global define, console, Highcharts*/
 define([
     'jquery',
     'handlebars',
@@ -10,6 +10,8 @@ define([
     'faostat_ui_ghg_overview/config/highcharts-config',
     'chosen',
     'bootstrap',
+    'highcharts',
+    'highcharts-exporting',
     'sweetAlert'
 ], function ($, Handlebars, template, queries, i18n, Table, Chart, HighChartsConfig) {
 
@@ -99,6 +101,20 @@ define([
         this.initTemplate();
         this.initVariables();
         this.initUI();
+
+        // Highcharts multilanguage
+        Highcharts.setOptions({
+            lang: {
+                contextButtonTitle: i18n.contextButtonTitle,
+                downloadJPEG: i18n.downloadJPEG,
+                downloadPDF: i18n.downloadPDF,
+                downloadPNG: i18n.downloadPNG,
+                downloadSVG: i18n.downloadSVG,
+                printChart: i18n.printChart,
+                resetZoom: i18n.resetZoom,
+                resetZoomTitle: i18n.resetZoomTitle
+            }
+        });
 
     };
 

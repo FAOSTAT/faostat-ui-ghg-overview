@@ -19,7 +19,7 @@ define({
         'burning_crops_residues': 'Burning  Crops Residues',
         'burning_savanna': 'Burning Savanna',
         'ghg_overview_title': 'Regional overview of the emissions',
-        'ghg_overview_note': 'Start by selecting the country(ies) and other relevant details above. <br> The tool will return a series of results in graphical and tabular format. <br>When selecting two or more countries, the information will be presented as a sum.<br>For more information, a user instruction guide is available here.',
+        'ghg_overview_note': 'Start by selecting the country(ies) and other relevant details above. <br> The tool will return a series of results in graphical and tabular format. <br> When selecting two or more countries, the information will be presented as a sum.',
         'ghg_overview_subnote': 'For more information, a user instruction guide is available here.',
         'agriculture': 'Agriculture',
         'land_use': 'Land Use',
@@ -49,7 +49,16 @@ define({
         source: 'Source',
         date: 'Date',
 
-        max_selection_available: "Maximum 4 countries are allowed. Please select less countries."
+        max_selection_available: "Maximum 4 countries are allowed. Please select less countries.",
+
+        contextButtonTitle: "Chart print/export",
+        downloadJPEG: "Download JPEG image",
+        downloadPDF: "Download PDF document",
+        downloadPNG: "Download PNG image",
+        downloadSVG: "Download SVG vector image",
+        printChart: "Chart print/export",
+        resetZoom: "Reset zoom",
+        resetZoomTitle: "Reset zoom level 1:1"
 
     },
     'F' : true,

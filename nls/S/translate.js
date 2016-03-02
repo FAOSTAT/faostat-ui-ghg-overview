@@ -17,22 +17,38 @@ define({
     'rice_cultivation': 'Cultivo del arroz',
     'burning_crops_residues': 'Quemado de residuos agrícolas',
     'burning_savanna': 'Quemado de sabana',
+    'ghg_overview_note': 'Seleccione el/los país(es) y los otros detalles correspondientes arriba. <br> La herramienta mostrará una serie de resultados in formato gráfico y tabular. <br> Al seleccionar dos o más países, la información se presentará como una suma.',
     'ghg_overview_title': 'Panorama de las emisiones',
-    'ghg_overview_note': 'Seleccione el/los país(es) y los otros detalles correspondientes arriba. La herramienta mostrará una serie de',
     'ghg_overview_subnote': 'Para obtener más información, una guía del usuario está disponible aquí.',
     'agriculture': 'Agricultura',
-    'land_use': 'Land Use',
-    'by_continent': 'Por Continente',
+    'land_use': 'Uso de la tierra',
     'category': 'Categoría',
     'no_data_to_display': 'No data to display',
     'grand_total':'Gran Total',
     'select_one_or_more_countries': 'Seleccionar uno o más países',
-    'by_country': 'Por País',
     'continent': 'Continente',
     'region': 'Región',
     'total': 'Total',
     'pie_mu': 'Gg CO2eq',
     'user_instructions': 'User Instructions',
     'export': 'Exportar',
-    'avg': 'Promedio'
+    'avg': 'Promedio',
+
+    'by_world': 'Agricultura total por continente (Gg CO<sub>2</sub>eq)',
+    'by_continent': 'Emisiones de las categorías de la agricultura por continente (Gg CO<sub>2</sub>eq)',
+    'by_region': 'Emisiones de las categorías de la agricultura por región (Gg CO<sub>2</sub>eq)',
+    'by_country': 'Emisiones de las categorías de la agricultura por país (Gg CO<sub>2</sub>eq)',
+
+    'charts': 'Gráficos',
+    'tables': 'Tablas',
+
+    contextButtonTitle: "Gráfico imprimir/exportar",
+    downloadJPEG: "Descargar JPG",
+    downloadPDF: "Descargar PNG",
+    downloadPNG: "Descargar documento en PDF",
+    downloadSVG: "Descargar SVG",
+    printChart: "Gráfico imprimir/exportar",
+    resetZoom: "Restabl. zoom",
+    resetZoomTitle: "Restablecer el zoom 1:1"
+
 });
