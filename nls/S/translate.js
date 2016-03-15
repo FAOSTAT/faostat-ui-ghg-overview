@@ -13,7 +13,7 @@ define({
     'enteric_fermentation': 'Fermentación entérica',
     'sum_of_countries': 'Suma de los Países',
     'manure_management': 'Gestión del estiércol',
-    'agricultural_soils': 'Cultivación de suelos orgánicos',
+    'agricultural_soils': 'Suelos agrícolas',
     'rice_cultivation': 'Cultivo del arroz',
     'burning_crops_residues': 'Quemado de residuos agrícolas',
     'burning_savanna': 'Quemado de sabana',

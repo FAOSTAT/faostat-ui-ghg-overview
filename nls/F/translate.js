@@ -13,7 +13,7 @@ define({
     'enteric_fermentation': 'Fermentation entérique',
     'sum_of_countries': 'Somme des Pays',
     'manure_management': 'Gestion du fumier',
-    'agricultural_soils': 'Culture de sols organiques',
+    'agricultural_soils': 'Sols agricoles',
     'rice_cultivation': 'Riziculture',
     'burning_crops_residues': 'Combustion - résidus de récoltes',
     'burning_savanna': 'Combustion - Savane',
