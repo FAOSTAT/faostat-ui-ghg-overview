@@ -38,16 +38,14 @@ define([
             selected_aggregation: "AVG",
 
             // Default URLs
-            url_wds: 'http://faostat3.fao.org/wds/rest',
+            //url_wds: 'http://faostat3.fao.org/wds/rest',
             baseurl_data: '/table/json',
-            baseurl_countries: '/procedures/countries',
-            baseurl_years: '/procedures/years',
+            //baseurl_countries: '/procedures/countries',
+            //baseurl_years: '/procedures/years',
 
             // Default Values of the comboboxes
             selected_areacodes: [],
-            selected_from_year: [1990],
-            selected_to_year: [2012],
-            timerange: [1990, 2012],
+            selected_from_year: 1990,
 
             decimal_values: 2,
             colors: {
@@ -145,7 +143,7 @@ define([
         // Populate DropDowns
         this.populateCountriesDD({disable_search_threshold: 10});
         this.populateYearsDD(this.$FROM_YEAR, this.CONFIG.selected_from_year, {disable_search_threshold: 10});
-        this.populateYearsDD(this.$TO_YEAR, this.CONFIG.selected_to_year, {disable_search_threshold: 10});
+        this.populateYearsDD(this.$TO_YEAR, null, {disable_search_threshold: 10});
 
         this.$SECTOR_LIST.chosen();
 
@@ -162,11 +160,11 @@ define([
 
     };
 
-    GHG_OVERVIEW.prototype.populateCountriesDD = function (chosen_parameters) {
+    /*GHG_OVERVIEW.prototype.populateCountriesDD = function (chosen_parameters) {
 
         var self = this,
             defaultCodes = this.CONFIG.selected_areacodes,
-            url = this.CONFIG.url_wds + this.CONFIG.baseurl_countries + "/" + this.CONFIG.datasource + "/" + this.CONFIG.domaincode + "/" + this.CONFIG.lang;
+            url = this.CONFIG.url_wds + this.CONFIG.baseurl_countries + "/faostatdb/" + this.CONFIG.domaincode + "/" + this.CONFIG.lang;
 
         $.ajax({
             url: url,
@@ -191,6 +189,40 @@ define([
             }
         });
 
+    };*/
+
+    GHG_OVERVIEW.prototype.populateCountriesDD = function (chosen_parameters) {
+
+        var self = this,
+            defaultCodes = this.CONFIG.selected_areacodes;
+
+        var data = {};
+        data.datasource = this.CONFIG.datasource;
+        data.json = JSON.stringify(queries.country_list.sql).replace('{{LANG}}', this.CONFIG.lang);
+        $.ajax({
+            type: 'POST',
+            url: this.CONFIG.url_wds + this.CONFIG.baseurl_data,
+            data: data,
+            success: function (response) {
+
+                self.$COUNTRY_LIST.append(self.populateDD(response, defaultCodes));
+                self.$COUNTRY_LIST.on('change', function () {
+                    self.updateView();
+                });
+
+                self.$COUNTRY_LIST.chosen(chosen_parameters);
+
+                if (defaultCodes.length > 0) {
+                    self.updateView();
+                }
+
+            },
+            error: function (a, b, c) {
+                console.error(a, b, c);
+            }
+
+        });
+
     };
 
     GHG_OVERVIEW.prototype.populateDD = function (values, defaultCodes) {
@@ -208,9 +240,70 @@ define([
 
     };
 
-    GHG_OVERVIEW.prototype.populateYearsDD = function ($DD, defaultCodes, chosen_parameters) {
+    GHG_OVERVIEW.prototype.populateYearsDD = function ($DD, defaultCode, chosen_parameters) {
 
-        var fromyear = this.CONFIG.timerange[0],
+
+        var fromyear = this.CONFIG.selected_from_year,
+            self = this;
+
+        var data = {};
+        data.datasource = this.CONFIG.datasource;
+        data.json = JSON.stringify(queries.year_list.sql);
+        $.ajax({
+            type: 'POST',
+            url: this.CONFIG.url_wds + this.CONFIG.baseurl_data,
+            data: data,
+            success: function (response) {
+
+                var years = [];
+
+
+                for (var i = 0; i < response.length; i++) {
+
+                    console.log(response[i])
+
+                    if ( parseInt(response[i][0]) >= fromyear) {
+                        years.push(parseInt(response[i][0]));
+                    }
+                }
+
+                years.reverse();
+
+                defaultCode = (defaultCode)? defaultCode : years[0];
+
+
+                var options = [];
+                for (var i = 0; i < years.length; i++) {
+                    var year = years[i];
+                    if (defaultCode === year) {
+                        options.push('<option selected value="' + year + '">' + year + '</option>');
+                    } else {
+                        options.push('<option value="' + year + '">' + year + '</option>');
+                    }
+                }
+
+
+                console.log(years)
+
+                // add html
+                $DD.append(options.join());
+
+                $DD.on('change', function () {
+                    self.updateView();
+                });
+
+                $DD.chosen(chosen_parameters);
+
+
+            },
+            error: function (a, b, c) {
+                console.error(a, b, c);
+            }
+
+        });
+
+
+       /* var fromyear = this.CONFIG.timerange[0],
             toyear = this.CONFIG.timerange[1];
 
         var options = [];
@@ -220,17 +313,9 @@ define([
             } else {
                 options.push('<option value="' + year + '">' + year + '</option>');
             }
-        }
+        }*/
 
-        // add html
-        $DD.append(options.join());
 
-        var self = this;
-        $DD.on('change', function () {
-            self.updateView();
-        });
-
-        $DD.chosen(chosen_parameters);
 
     };
 
@@ -575,6 +660,8 @@ define([
         query_chart = this.replaceValues(query_chart, chart_obj);
         var timerange = this.getTimerange();
 
+        console.log(query_chart)
+
         this.createTitle(id + "_total", query_total.sql);
         this.createChart(id + "_chart", query_chart.sql, "pie", null, {
             title: areanames,
@@ -752,7 +839,7 @@ define([
             itemcode: this.CONFIG.itemcode,
             fromyear: this.CONFIG.selected_from_year,
             toyear: this.CONFIG.selected_to_year,
-            domaincode: "'" + this.CONFIG.domaincode + "'",
+            domaincode: this.CONFIG.domaincode,
             aggregation: this.CONFIG.selected_aggregation
         };
 
@@ -760,8 +847,8 @@ define([
 
     GHG_OVERVIEW.prototype.getTimerange = function () {
 
-        var fromyear = this.CONFIG.timerange[0],
-            toyear = this.CONFIG.timerange[1];
+        var fromyear = this.$FROM_YEAR.val(),
+            toyear = this.$TO_YEAR.val();
 
         return (fromyear === toyear)? fromyear: fromyear  + "-" + toyear;
 
