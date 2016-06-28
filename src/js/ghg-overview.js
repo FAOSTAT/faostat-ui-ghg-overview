@@ -383,10 +383,11 @@ define([
         var chart_obj = obj;
         chart_obj.areacode = arecode;
         query_chart = this.replaceValues(query_chart, chart_obj);
+        var timerange = this.getTimerange();
 
         this.createChart("fs_world_chart", query_chart.sql, "pie", null, {
             title: i18n.world,
-            subtitle: i18n.agriculture_total + ' - '+ i18n.gg_co2eq +' (' + i18n.avg + ')'
+            subtitle: i18n.agriculture_total + ' - '+ i18n.gg_co2eq +' (' + i18n.avg + ' ' + timerange +')'
         });
         this.updateTableWorld(queries);
 
