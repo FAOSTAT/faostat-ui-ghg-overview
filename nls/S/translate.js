@@ -44,8 +44,8 @@ define({
 
     contextButtonTitle: "Gráfico imprimir/exportar",
     downloadJPEG: "Descargar JPG",
-    downloadPDF: "Descargar PNG",
-    downloadPNG: "Descargar documento en PDF",
+    downloadPDF: "Descargar documento en PDF",
+    downloadPNG: "Descargar PNG",
     downloadSVG: "Descargar SVG",
     printChart: "Gráfico imprimir/exportar",
     resetZoom: "Restabl. zoom",
